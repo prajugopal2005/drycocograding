@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥥 Coconut Purity Analysis Result</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .result-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+            margin: 30px 0;
+        }
+        
+        .image-container {
+            position: relative;
+        }
+        
+        .result-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .result-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .result-info {
+            text-align: left;
+        }
+        
+        .purity-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .purity-badge.high {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .purity-badge.medium {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white;
+        }
+        
+        .purity-badge.low {
+            background: linear-gradient(135deg, #F44336, #D32F2F);
+            color: white;
+        }
+        
+        .confidence-meter {
+            margin: 20px 0;
+        }
+        
+        .confidence-label {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .confidence-bar {
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .confidence-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+            position: relative;
+        }
+        
+        .confidence-fill.high {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .confidence-fill.medium {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .confidence-fill.low {
+            background: linear-gradient(135deg, #F44336, #D32F2F);
+        }
+        
+        .confidence-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .detail-value {
+            color: #666;
+        }
+        
+        .actions {
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn.secondary {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+        }
+        
+        .btn.secondary:hover {
+            box-shadow: 0 10px 20px rgba(108, 117, 125, 0.3);
+        }
+        
+        .recommendations {
+            background: #e8f5e8;
+            border-left: 4px solid #4CAF50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .recommendations h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .recommendations ul {
+            color: #388e3c;
+            padding-left: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .result-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🥥 Analysis Complete</h1>
+            <p>Your coconut image has been analyzed using advanced machine learning</p>
+        </div>
+        
+        <div class="result-container">
+            <div class="image-container">
+                <img src="/{{ image_path }}" alt="Coconut Image" class="result-image">
+            </div>
+            
+            <div class="result-info">
+                <div class="purity-badge {{ 'high' if label == 'High Purity' else 'medium' if label == 'Medium Purity' else 'low' }}">
+                    {% if label == 'High Purity' %}
+                        ✅ High Purity
+                    {% elif label == 'Medium Purity' %}
+                        ⚠️ Medium Purity
+                    {% else %}
+                        ❌ Low Purity
+                    {% endif %}
+                </div>
+                
+                <div class="confidence-meter">
+                    <div class="confidence-label">Confidence Level</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill {{ 'high' if label == 'High Purity' else 'medium' if label == 'Medium Purity' else 'low' }}" 
+                             style="width: {{ confidence }}%">
+                            <div class="confidence-text">{{ confidence }}%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="details">
+                    <div class="detail-item">
+                        <span class="detail-label">Predicted Class:</span>
+                        <span class="detail-value">{{ label }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence Score:</span>
+                        <span class="detail-value">{{ confidence }}%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Analysis Method:</span>
+                        <span class="detail-value">Deep Learning CNN</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Image File:</span>
+                        <span class="detail-value">{{ filename }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% if label == 'High Purity' %}
+        <div class="recommendations">
+            <h3>✅ Excellent Quality!</h3>
+            <ul>
+                <li>This coconut shows high purity characteristics</li>
+                <li>Suitable for premium products</li>
+                <li>Recommended for direct consumption</li>
+            </ul>
+        </div>
+        {% elif label == 'Medium Purity' %}
+        <div class="recommendations">
+            <h3>⚠️ Good Quality</h3>
+            <ul>
+                <li>This coconut has moderate purity</li>
+                <li>Suitable for general use</li>
+                <li>May require some processing</li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="recommendations">
+            <h3>❌ Quality Concerns</h3>
+            <ul>
+                <li>This coconut shows signs of low purity</li>
+                <li>May require additional processing</li>
+                <li>Consider quality inspection</li>
+            </ul>
+        </div>
+        {% endif %}
+        
+        <div class="actions">
+            <a href="/" class="btn">🔄 Analyze Another</a>
+            <a href="/about" class="btn secondary">ℹ️ About System</a>
+        </div>
+    </div>
+    
+    <script>
+        // Animate confidence bar on page load
+        window.addEventListener('load', function() {
+            const confidenceFill = document.querySelector('.confidence-fill');
+            const confidence = {{ confidence }};
+            
+            // Reset width to 0
+            confidenceFill.style.width = '0%';
+            
+            // Animate to actual confidence
+            setTimeout(() => {
+                confidenceFill.style.width = confidence + '%';
+            }, 500);
+        });
+        
+        // Add some interactive effects
+        const resultImage = document.querySelector('.result-image');
+        resultImage.addEventListener('click', function() {
+            // Create a modal or lightbox effect
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                cursor: pointer;
+            `;
+            
+            const img = document.createElement('img');
+            img.src = this.src;
+            img.style.cssText = `
+                max-width: 90%;
+                max-height: 90%;
+                border-radius: 10px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            `;
+            
+            modal.appendChild(img);
+            document.body.appendChild(modal);
+            
+            modal.addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+        });
+    </script>
+</body>
+</html>

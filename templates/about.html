@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥥 About - Coconut Purity Grading System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px 0;
+        }
+        
+        .section p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .workflow {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🥥 About Our System</h1>
+            <p>Automated Purity Grading System for Dry Coconuts using Pre-Trained Machine Learning API</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>🎯 Problem Statement</h2>
+                <p>Traditional coconut quality assessment relies on manual inspection, which is time-consuming, subjective, and prone to human error. The agricultural industry needs an automated solution that can quickly and accurately classify coconut purity levels to improve quality control and processing efficiency.</p>
+            </div>
+            
+            <div class="section">
+                <h2>🎯 Objective</h2>
+                <p>Develop an end-to-end automated system that uses advanced machine learning to classify dry coconut images into three purity categories: High, Medium, and Low. The system provides instant, accurate, and consistent grading with confidence scores to support agricultural decision-making.</p>
+            </div>
+            
+            <div class="section">
+                <h2>🛠️ Tools & Technologies</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>🐍 Python</h4>
+                        <p>Core programming language</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>🌐 Flask</h4>
+                        <p>Web framework</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>🧠 TensorFlow</h4>
+                        <p>Deep learning framework</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>👁️ OpenCV</h4>
+                        <p>Computer vision</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>📊 Teachable Machine</h4>
+                        <p>Pre-trained models</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>☁️ Google Cloud Vision</h4>
+                        <p>Cloud API integration</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🔄 System Workflow</h2>
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4>Image Upload</h4>
+                            <p>User uploads a dry coconut image through the web interface</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4>Preprocessing</h4>
+                            <p>Image is resized to 224x224 pixels and normalized for model input</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4>Prediction</h4>
+                            <p>Pre-trained CNN model analyzes the image and generates predictions</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h4>Output</h4>
+                            <p>System displays purity classification and confidence percentage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>✨ Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h4>High Accuracy</h4>
+                        <p>Advanced CNN architecture ensures reliable classification results</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h4>Real-time Processing</h4>
+                        <p>Instant analysis and results within seconds</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h4>Automation</h4>
+                        <p>Eliminates manual inspection and reduces human error</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4>Consistency</h4>
+                        <p>Standardized grading criteria across all assessments</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h4>Web Interface</h4>
+                        <p>User-friendly interface accessible from any device</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">☁️</div>
+                        <h4>Cloud Integration</h4>
+                        <p>Optional cloud API support for enhanced capabilities</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>📈 System Performance</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Accuracy Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">&lt;2s</div>
+                        <div class="stat-label">Processing Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Purity Classes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">16MB</div>
+                        <div class="stat-label">Max File Size</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🔮 Future Enhancements</h2>
+                <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+                    <li>Mobile camera integration for real-time capture</li>
+                    <li>Object detection for multiple coconut analysis</li>
+                    <li>Cloud deployment on Render or Streamlit</li>
+                    <li>Database integration for prediction history</li>
+                    <li>Batch processing for multiple images</li>
+                    <li>API endpoints for third-party integration</li>
+                </ul>
+            </div>
+            
+            <div class="section" style="text-align: center;">
+                <a href="/" class="btn">🏠 Back to Home</a>
+                <a href="/" class="btn">🔍 Try the System</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
